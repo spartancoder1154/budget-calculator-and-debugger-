@@ -1,0 +1,73 @@
+def calculate_monthly_budget():
+    try:
+        # Step 1: Get user inputs
+        income = float(input("Enter your total monthly income: "))
+        print(f"DEBUG: Income entered: {income}")  # Debugging
+
+        # Step 2: Get fixed expenses
+        fixed_expenses = float(input("Enter total fixed expenses (e.g., rent, utilities): "))
+        print(f"DEBUG: Fixed Expenses entered: {fixed_expenses}")  # Debugging
+
+        # Step 3: Collect variable expenses using a loop
+        variable_expenses = 0
+        while True:
+            expense = input("Enter a variable expense (or type 'done' to finish): ")
+            if expense.lower() == 'done':
+                break
+            try:
+                expense_value = float(expense)
+                variable_expenses += expense_value
+                print(f"DEBUG: Added Variable Expense: {expense_value}, Total so far: {variable_expenses}")  # Debugging
+            except ValueError:
+                print("Invalid input. Please enter a numeric value.")
+
+        # Step 4: Calculate total expenses and remaining budget
+        total_expenses = fixed_expenses + variable_expenses
+        remaining_budget = income - total_expenses
+
+        # Debugging statements for calculations
+        print(f"DEBUG: Fixed Expenses: {fixed_expenses}, Variable Expenses: {variable_expenses}")
+        print(f"DEBUG: Total Expenses: {total_expenses}, Remaining Budget: {remaining_budget}")
+
+        # Step 5: Display results with conditional checks
+        print("\n--- Monthly Budget Summary ---")
+        print(f"Total Income: ${income:.2f}")
+        print(f"Total Expenses: ${total_expenses:.2f}")
+        print(f"Remaining Budget: ${remaining_budget:.2f}")
+
+        if remaining_budget > 0:
+            print("Good job! You have money left for savings.")
+        elif remaining_budget == 0:
+            print("Be cautious! You have spent your entire budget.")
+        else:
+            print("Warning! You have overspent. Consider adjusting your expenses.")
+
+    except ValueError:
+        print("Invalid input. Please enter numeric values.")
+
+# Run the budget calculator
+calculate_monthly_budget()
+
+
+Enter your total monthly income: 3542
+DEBUG: Income entered: 3542.0
+Enter total fixed expenses (e.g., rent, utilities): 1575
+DEBUG: Fixed Expenses entered: 1575.0
+Enter a variable expense (or type 'done' to finish): 200
+DEBUG: Added Variable Expense: 200.0, Total so far: 200.0
+Enter a variable expense (or type 'done' to finish): 150
+DEBUG: Added Variable Expense: 150.0, Total so far: 350.0
+Enter a variable expense (or type 'done' to finish): 325
+DEBUG: Added Variable Expense: 325.0, Total so far: 675.0
+Enter a variable expense (or type 'done' to finish): done
+DEBUG: Fixed Expenses: 1575.0, Variable Expenses: 675.0
+DEBUG: Total Expenses: 2250.0, Remaining Budget: 1292.0
+
+--- Monthly Budget Summary ---
+Total Income: $3542.00
+Total Expenses: $2250.00
+Remaining Budget: $1292.00
+Good job! You have money left for savings.
+
+
+
